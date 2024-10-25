@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calidad del Aire App</title>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Calidad del Aire</h1>
+        </header>
+
+        <main class="app-content">
+            <section id="login" class="screen active">
+                <h2>Inicio de Sesión</h2>
+                <form onsubmit="showMainContent(); return false;">
+                    <input type="email" placeholder="Correo Electrónico" required>
+                    <input type="password" placeholder="Contraseña" required>
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+                <div class="link">
+                    <p>¿No tienes cuenta? <a href="#registro" onclick="showSection('registro');">Regístrate</a></p>
+                </div>
+            </section>
+
+            <section id="registro" class="screen">
+                <h2>Registro de Usuario</h2>
+                <form onsubmit="showMainContent(); return false;">
+                    <input type="text" placeholder="Nombre Completo" required>
+                    <input type="email" placeholder="Correo Electrónico" required>
+                    <input type="password" placeholder="Contraseña" required>
+                    <button type="submit">Registrar</button>
+                </form>
+                <div class="link">
+                    <p>¿Ya tienes cuenta? <a href="#login" onclick="showSection('login');">Inicia Sesión</a></p>
+                </div>
+            </section>
+
+            <section id="main" class="screen">
+                <h2>Panel Principal</h2>
+                <div class="card">
+                    <a href="#niveles" onclick="showSection('niveles');">Niveles de CO2</a>
+                </div>
+                <div class="card">
+                    <a href="#particulas" onclick="showSection('particulas');">PM2.5</a>
+                </div>
+                <div class="card">
+                    <a href="#alertas" onclick="showSection('alertas');">Alertas</a>
+                </div>
+                <div class="card">
+                    <a href="#ajustes" onclick="showSection('ajustes');">Ajustes</a>
+                </div>
+                <div class="card">
+                    <a href="#historial" onclick="showSection('historial');">Historial</a>
+                </div>
+                <div class="card">
+                    <a href="#estadisticas" onclick="showSection('estadisticas');">Estadísticas</a>
+                </div>
+                <div class="card">
+                    <a href="#sugerencias" onclick="showSection('sugerencias');">Sugerencias</a>
+                </div>
+                <div class="card">
+                    <a href="#reportes" onclick="showSection('reportes');">Reportes</a>
+                </div>
+                <button onclick="logout();">Cerrar Sesión</button>
+            </section>
+
+            <section id="niveles" class="screen">
+                <h2>Niveles de CO2</h2>
+                <p>Nivel actual de CO2: <strong>410 ppm</strong></p>
+                <p>Estado: <span class="alert">Alerta: Nivel alto de CO2</span></p>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="particulas" class="screen">
+                <h2>Niveles de Partículas Finas (PM2.5)</h2>
+                <p>Nivel actual de PM2.5: <strong>15 µg/m³</strong></p>
+                <p>Estado: <span class="safe">Adecuado</span></p>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="alertas" class="screen">
+                <h2>Alertas de Calidad del Aire</h2>
+                <p>Alertas activas:</p>
+                <ul>
+                    <li>CO2 por encima de 400 ppm</li>
+                    <li>PM2.5 por encima de 10 µg/m³</li>
+                </ul>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="ajustes" class="screen">
+                <h2>Ajustes de Notificaciones</h2>
+                <form id="ajustes-form" onsubmit="saveSettings(); return false;">
+                    <label>
+                        <input type="checkbox"> Recibir alertas por SMS
+                    </label>
+                    <label>
+                        <input type="checkbox"> Recibir alertas por Correo Electrónico
+                    </label>
+                    <label>
+                        <input type="checkbox"> Recibir notificaciones Push
+                    </label>
+                    <button type="submit">Guardar Ajustes</button>
+                </form>
+                <button onclick="showMainContent();">Volver al Menú</button>
+            </section>            
+
+            <section id="historial" class="screen">
+                <h2>Historial de Calidad del Aire</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>CO2 (ppm)</th>
+                            <th>PM2.5 (µg/m³)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>24/10/2024</td>
+                            <td>400</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>23/10/2024</td>
+                            <td>405</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>22/10/2024</td>
+                            <td>390</td>
+                            <td>10</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="estadisticas" class="screen">
+                <h2>Estadísticas Mensuales</h2>
+                <p>Niveles promedio de calidad del aire en octubre:</p>
+                <ul>
+                    <li>CO2: 395 ppm</li>
+                    <li>PM2.5: 11 µg/m³</li>
+                </ul>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="sugerencias" class="screen">
+                <h2>Sugerencias para Mejorar la Calidad del Aire</h2>
+                <ul>
+                    <li>Ventilar espacios regularmente</li>
+                    <li>Usar purificadores de aire</li>
+                    <li>Plantar plantas purificadoras</li>
+                </ul>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+
+            <section id="reportes" class="screen">
+                <h2>Reportes de Calidad del Aire</h2>
+                <button onclick="generateReport()">Generar Reporte Semanal</button>
+                <p>Se enviará un reporte semanal a tu correo.</p>
+                <button onclick="showMainContent();">Volver</button>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function showMainContent() {
+            document.getElementById("main").style.display = "block";
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                if (screen.id !== "main") {
+                    screen.style.display = "none";
+                }
+            });
+        }
+
+        function showSection(sectionId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.style.display = "none"; // Oculta todas las secciones
+            });
+            document.getElementById(sectionId).style.display = "block"; // Muestra la sección seleccionada
+        }
+
+        function logout() {
+            showMainContent(); // Regresa al panel principal y muestra el login
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                if (screen.id === "login") {
+                    screen.style.display = "block"; // Muestra la pantalla de login
+                } else {
+                    screen.style.display = "none"; // Oculta las demás secciones
+                }
+            });
+        }
+
+        function saveSettings() {
+            // Aquí puedes agregar lógica para guardar los ajustes en el almacenamiento local si es necesario
+            alert("Ajustes guardados correctamente.");
+        }
+
+        function generateReport() {
+        // Datos ficticios para el reporte semanal
+        const reportData = [
+            { fecha: '17/10/2024', co2: '400 ppm', pm25: '10 µg/m³' },
+            { fecha: '18/10/2024', co2: '410 ppm', pm25: '12 µg/m³' },
+            { fecha: '19/10/2024', co2: '405 ppm', pm25: '15 µg/m³' },
+            { fecha: '20/10/2024', co2: '395 ppm', pm25: '8 µg/m³' },
+            { fecha: '21/10/2024', co2: '420 ppm', pm25: '14 µg/m³' },
+            { fecha: '22/10/2024', co2: '415 ppm', pm25: '11 µg/m³' },
+            { fecha: '23/10/2024', co2: '410 ppm', pm25: '13 µg/m³' },
+            { fecha: '24/10/2024', co2: '400 ppm', pm25: '9 µg/m³' },
+        ];
+
+        // Construir el contenido del reporte
+        let reportContent = "Reporte Semanal de Calidad del Aire:\n\n";
+        reportContent += "Fecha\t\tCO2\t\tPM2.5\n";
+        reportContent += "----------------------------------------\n";
+
+        reportData.forEach(entry => {
+            reportContent += `${entry.fecha}\t${entry.co2}\t${entry.pm25}\n`;
+        });
+
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'reporte_semanal_calidad_aire.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        alert("Reporte semanal generado y descargado.");
+    }
+
+    </script>
+</body>
+</html>

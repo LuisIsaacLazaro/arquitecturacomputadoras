@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa; /* Azul celeste */
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    max-width: 375px;
+    margin: auto;
+    background-color: #ffffff; /* Blanco */
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.app-header {
+    background-color: #00838f; /* Azul oscuro */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.app-content {
+    padding: 20px;
+}
+
+.screen {
+    display: none; /* Oculta todas las pantallas por defecto */
+    width: 100%; /* Ocupa toda la pantalla */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+.active {
+    display: block; /* Muestra la pantalla activa */
+}
+
+.card {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #00838f;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #b2ebf2; /* Azul celeste claro */
+    display: block; /* Asegura que cada tarjeta esté en bloque */
+}
+
+.card a {
+    text-decoration: none;
+    color: #00838f;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #00838f; /* Azul oscuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #00695c; /* Azul más oscuro al pasar el mouse */
+}
+
+.alert {
+    color: red;
+    font-weight: bold;
+}
+
+.safe {
+    color: green;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #b2ebf2; /* Azul celeste claro */
+}  
+
+form {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos uno encima del otro */
+}
+
+form label {
+    margin-bottom: 10px; /* Espacio entre las casillas */
+}
+
